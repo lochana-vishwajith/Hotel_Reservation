@@ -1,0 +1,20 @@
+.paymentContainer {
+    justify-content: center;
+    align-items: center;
+}
+#payementCard {
+    margin-left: 26%;
+    margin-right: 26%;
+    margin-top: 2%;
+}
+
+.cardContent {
+    margin-left: 6%;
+    margin-right: 6%;
+
+}
+.paymentImg {
+    width: 70%;
+    height: 6rem;
+}
+
