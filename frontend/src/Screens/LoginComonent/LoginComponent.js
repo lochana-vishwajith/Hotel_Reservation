@@ -6,6 +6,8 @@ import { Toast } from "devextreme-react/toast";
 import LogoImage from "../../Assets/Images/oie_8ndMsF0hLOiZ.png";
 import { Link } from "react-router-dom";
 
+import loingBackGroud from "../../Assets/Images/loginBac.png";
+
 const LoginComponent = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +25,7 @@ const LoginComponent = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-xl-7" id="regImageCol">
+        <div className="col-xl-7" id="logImageCol">
           <span className="welcomeTxt">OLIVE GARDEN RESTURANT</span>
           <br />
           <img src={LogoImage} className="logo" />
@@ -34,7 +36,7 @@ const LoginComponent = () => {
             </span>
           </center>
         </div>
-        <div className="col-sm-4" id="regFormCol">
+        <div className="col-sm-5" id="logFormCol">
           <div className="card" id="loginCard">
             <label className="regFormTxt">UserName / Email</label>
             <TextBox

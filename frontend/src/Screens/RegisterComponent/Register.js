@@ -107,6 +107,7 @@ const Register = () => {
             placeholder="1A@a..(min 8 characters)"
             onChange={(val) => setpassword(val)}
           />
+          <br />
 
           <center>
             <Toast

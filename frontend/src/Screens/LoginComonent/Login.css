@@ -1,9 +1,10 @@
-#regImageCol {
+#logImageCol {
     margin-top: 4%;
 
 }
-#regFormCol {
+#logFormCol {
   margin-top: 4%;
+  background-image: url("../../Assets/Images/loginBac.png");
 }
 .regFormTxt {
   font-size: medium;
