@@ -12,6 +12,7 @@ const Register = () => {
   const [phone, setPhoneNumber] = useState("");
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
   const [toastVisible, setToastVisible] = useState(false);
   const [toastmessage, settoastmessage] = useState("");
   const [toastType, settoastType] = useState("");
@@ -23,11 +24,18 @@ const Register = () => {
       nic === "" ||
       phone === "" ||
       country === "" ||
-      email === ""
+      email === "" ||
+      password === ""
     ) {
       setToastVisible(true);
       settoastmessage("Please fill all the fields");
       settoastType("error");
+    } else {
+      if (password.length < 8) {
+        setToastVisible(true);
+        settoastmessage("Please add a password with minimum 7 charaters");
+        settoastType("error");
+      }
     }
   };
 
@@ -47,7 +55,6 @@ const Register = () => {
         </div>
         <div className="col-sm-4" id="regFormCol">
           <label className="regFormTxt">Full Name</label>
-          <br />
           <TextBox
             showClearButton={true}
             placeholder="John Smith"
@@ -55,7 +62,6 @@ const Register = () => {
           />
           <br />
           <span className="regFormTxt">Address</span>
-          <br />
           <TextBox
             showClearButton={true}
             placeholder="N0 3, ABC Street, DYK"
@@ -64,7 +70,6 @@ const Register = () => {
 
           <br />
           <span className="regFormTxt">Country</span>
-          <br />
           <TextBox
             showClearButton={true}
             placeholder="Sri Lanka"
@@ -73,7 +78,6 @@ const Register = () => {
 
           <br />
           <span className="regFormTxt">NIC / Passport</span>
-          <br />
           <TextBox
             showClearButton={true}
             placeholder="123456789V"
@@ -82,7 +86,6 @@ const Register = () => {
 
           <br />
           <span className="regFormTxt">Phone Number</span>
-          <br />
           <TextBox
             showClearButton={true}
             placeholder="070* *** ***"
@@ -91,7 +94,6 @@ const Register = () => {
 
           <br />
           <span className="regFormTxt">Email</span>
-          <br />
           <TextBox
             showClearButton={true}
             placeholder="abc@gmail.com"
@@ -99,6 +101,13 @@ const Register = () => {
           />
 
           <br />
+          <span className="regFormTxt">Password</span>
+          <TextBox
+            showClearButton={true}
+            placeholder="1A@a..(min 8 characters)"
+            onChange={(val) => setpassword(val)}
+          />
+
           <center>
             <Toast
               visible={toastVisible}
