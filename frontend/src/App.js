@@ -12,6 +12,7 @@ import ThingsToDo from "./Screens/ThingToDoScreen/ThingsToDo";
 import Register from "./Screens/RegisterComponent/Register";
 import LoginComponent from "./Screens/LoginComonent/LoginComponent";
 import Footer from "./Components/Footer/Footer";
+import RoomDetails from "./Screens/RoomDetailsComponent/RoomDetails";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/thingsToDo" element={<ThingsToDo />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LoginComponent />} />
+        <Route path="/roomDetails" element={<RoomDetails />} />
       </Routes>
       <Footer />
     </Router>
