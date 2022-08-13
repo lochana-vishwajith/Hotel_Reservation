@@ -20,7 +20,6 @@ const Register = () => {
 
   const registerUser = async (e) => {
     e.preventDefault();
-    console.log("ff", fullName, address, nic, phone, country, email, password);
     if (
       fullName === "" ||
       address === "" ||

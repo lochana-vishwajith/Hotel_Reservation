@@ -4,7 +4,8 @@ import TextBox from "devextreme-react/text-box";
 import "./Login.css";
 import { Toast } from "devextreme-react/toast";
 import LogoImage from "../../Assets/Images/oie_8ndMsF0hLOiZ.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import loingBackGroud from "../../Assets/Images/loginBac.png";
 
@@ -15,11 +16,42 @@ const LoginComponent = () => {
   const [toastmessage, settoastmessage] = useState("");
   const [toastType, settoastType] = useState("");
 
-  const logInUser = () => {
+  const navigate = useNavigate();
+
+  const logInUser = async (e) => {
+    e.preventDefault();
+
     if (userName === "" || password === "") {
       setToastVisible(true);
       settoastmessage("Please fill all the fields");
       settoastType("error");
+    } else {
+      const details = {
+        email: userName,
+        password,
+      };
+      await axios
+        .post(`http://localhost:5000/userDetails/login`, details)
+        .then((result) => {
+          console.log(result);
+          localStorage.setItem("userDetails", JSON.stringify(result.data.user));
+          localStorage.setItem("usertype", result.data.user.type);
+          localStorage.setItem("isLogged", true);
+          setToastVisible(true);
+          settoastmessage("Login Successfull");
+          settoastType("success");
+          if (result.data.user.type === "customer") {
+            navigate("/");
+          } else {
+            navigate("/adminDash");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setToastVisible(true);
+          settoastmessage("Login Failed");
+          settoastType("error");
+        });
     }
   };
   return (
@@ -42,14 +74,14 @@ const LoginComponent = () => {
             <TextBox
               showClearButton={true}
               placeholder="John Smith"
-              onChange={(val) => setUserName(val)}
+              onValueChange={(val) => setUserName(val)}
             />
             <br />
             <span className="regFormTxt">Password</span>
             <TextBox
               showClearButton={true}
               placeholder="*********"
-              onChange={(val) => setPassword(val)}
+              onValueChange={(val) => setPassword(val)}
             />
 
             <br />
@@ -65,7 +97,7 @@ const LoginComponent = () => {
               <button
                 type="button"
                 class="btn btn-outline-primary"
-                onClick={() => logInUser()}
+                onClick={(e) => logInUser(e)}
               >
                 Login
               </button>
