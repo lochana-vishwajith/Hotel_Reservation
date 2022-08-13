@@ -6,15 +6,17 @@ import TextBox from "devextreme-react/text-box";
 import DateBox from "devextreme-react/date-box";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import RoomOne from "../../Assets/Images/superior-room-header-1-480x231.jpg";
+import RoomOne from "../../Assets/Video/room.mp4";
+import { useNavigate } from "react-router";
 
 const RoomDetails = () => {
   const [facilities, setFacilities] = useState([]);
-  const [checkInDate, setCheckingDate] = useState("");
-  const [checkOutDate, setCheckOutDate] = useState("");
+  const [checkInDate, setCheckingDate] = useState();
+  const [checkOutDate, setCheckOutDate] = useState();
   const [toastVisible, setToastVisible] = useState(false);
   const [toastmessage, settoastmessage] = useState("");
   const [toastType, settoastType] = useState("");
+  const navigate = useNavigate();
 
   let RoomDetails = {
     type: "GRAND EXECUTIVE SUITE",
@@ -40,20 +42,16 @@ const RoomDetails = () => {
       setToastVisible(true);
       settoastmessage("Please fill all the fields");
       settoastType("error");
+    } else {
+      navigate("/payment");
     }
   };
   return (
     <div className="roomDetailContainer">
       <div className="roomImageSlider">
-        <Slide autoplay infinite>
-          {RoomDetails.images.map((image, index) => (
-            <div className="each-slide" key={index}>
-              <image className="roomImage">
-                <source src={image} />
-              </image>
-            </div>
-          ))}
-        </Slide>
+        <video autoPlay muted loop className="roomInro">
+          <source src={RoomOne} type="video/mp4" />
+        </video>
       </div>
       <div className="roomDesContainer">
         <div className="container">
@@ -80,7 +78,7 @@ const RoomDetails = () => {
               <DateBox
                 placeholder="checkin date"
                 type="date"
-                onChange={(val) => setCheckingDate(val)}
+                onChange={() => setCheckingDate()}
               />
 
               <br />

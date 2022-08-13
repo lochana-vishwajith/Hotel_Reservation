@@ -13,6 +13,7 @@ import Register from "./Screens/RegisterComponent/Register";
 import LoginComponent from "./Screens/LoginComonent/LoginComponent";
 import Footer from "./Components/Footer/Footer";
 import RoomDetails from "./Screens/RoomDetailsComponent/RoomDetails";
+import PayementGateway from "./Screens/PaymentGatewayScreen/PayementGateway";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LoginComponent />} />
         <Route path="/roomDetails" element={<RoomDetails />} />
+        <Route path="/payment" element={<PayementGateway />} />
       </Routes>
       <Footer />
     </Router>
