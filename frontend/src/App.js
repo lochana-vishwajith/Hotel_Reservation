@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "devextreme/dist/css/dx.light.css";
+import "react-slideshow-image/dist/styles.css";
 
 import Accommadation from "./Screens/AccommadationScreen/Accommadation";
 import FoodBeverages from "./Screens/Food&BeveragesScreen/FoodBeverages";

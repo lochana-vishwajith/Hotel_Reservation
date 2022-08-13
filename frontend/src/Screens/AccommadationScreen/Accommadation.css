@@ -1,0 +1,34 @@
+.roomInro {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 5;
+    
+  }
+  .intoDiv{
+    height: 500px;
+    position: relative;
+  }
+  .accomDetails {
+    background-color: black;
+    width: 100%;
+    height: 30vh;
+  }
+  .accommdationTitle {
+    color: green;
+    padding-top: 2.4%;
+  }
+  .roomDes {
+    color: white;
+  }
+  .RoomComtainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: border-box;
+  }
+  .cardContainer {
+    padding: 3%;
+  }
+
