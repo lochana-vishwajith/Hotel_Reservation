@@ -1,0 +1,34 @@
+.roomInro {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 5;
+    
+  }
+  .galleryInto {
+    height: 500px;
+    position: relative;
+  }
+   .galleryTitle {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    color: green;
+    text-align: center;
+   }  
+   .imgContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: border-box;
+   }
+   .imgBox {
+    padding: 2%;
+    height: 26rem;
+    width:  30rem;
+    justify-content: space-around;
+   }
+   .imageHotel {
+    width: 100%;
+    height: 100%;
+   }
