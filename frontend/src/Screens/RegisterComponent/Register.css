@@ -1,0 +1,29 @@
+#regImageCol {
+      margin-top: 4%;
+
+}
+#regFormCol {
+    margin-top: 4%;
+}
+.regFormTxt {
+    font-size: medium;
+
+}
+.welcomeTxt {
+    font-size: 4rem;
+    font-weight: bold;
+}
+.logo {
+    width:30rem;
+    height: 20rem;
+    margin-top: 2%;
+    margin-left: 6%;
+}
+.loginReqTxt {
+    margin-top: 2%;
+    font-size: medium;
+    color: "#26218f";
+}
+.container {
+    margin-bottom: 3%;
+}
