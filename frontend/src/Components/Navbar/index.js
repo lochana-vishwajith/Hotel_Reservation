@@ -29,7 +29,7 @@ const Navbar = () => {
             <span className="thingsToDoNavTxt">Things-To-Do</span>
           </NavLink>
           <NavLink to="/register" activeStyle>
-            <span className="registerNavTxt">Register</span>
+            <span className="registerNavTxt">Register/Login</span>
           </NavLink>
         </NavMenu>
       </Nav>
