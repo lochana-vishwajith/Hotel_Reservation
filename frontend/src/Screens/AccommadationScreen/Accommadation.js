@@ -69,13 +69,13 @@ const Accommadation = () => {
             <div className="cardContainer" key={index}>
               <div className="card">
                 <img
-                  class="card-img-top"
+                  className="card-img-top"
                   src={room.images[0]}
                   alt="Card image cap"
                 />
                 <div class="card-body">
                   <h5 class="card-title">{room.type}</h5>
-                  <Link to="/accommadation" class="btn btn-outline-success">
+                  <Link to="/roomDetails" class="btn btn-outline-success">
                     Find out more
                   </Link>
                 </div>

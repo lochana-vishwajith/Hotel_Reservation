@@ -1,0 +1,24 @@
+.roomImageSlider{
+    height: 500px;
+    position: relative;
+}
+.roomImage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 5;
+}
+.roomDesContainer {
+    background-color: black;
+    width: 100%;
+    height: 35vh;
+}
+.roomTitle {
+    color: green;
+    padding-top: 2.4%;
+  }
+  .roomDes {
+    color: white;
+  }
