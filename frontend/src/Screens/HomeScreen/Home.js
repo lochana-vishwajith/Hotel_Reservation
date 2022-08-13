@@ -46,7 +46,7 @@ const Home = () => {
               <div class="card-body">
                 <h5 class="card-title">Things To Do</h5>
                 <p class="card-text">Olive Garden is probably one of Sri Lanka’s best kept secrets that offers plenty to keep you fascinated.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a href="/thingsToDo" class="btn btn-primary">Explore</a>
               </div>
             </div>          </div>
         </div>

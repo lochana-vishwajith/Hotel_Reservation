@@ -24,6 +24,7 @@ function App() {
         <Route path="/thingsToDo" element={<ThingsToDo />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LoginComponent />} />
+
       </Routes>
       <Footer />
     </Router>
