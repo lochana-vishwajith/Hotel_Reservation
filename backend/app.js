@@ -24,4 +24,6 @@ try {
   process.exit(1);
 }
 
+app.use("/userDetails", require("./Routes/UserRoutes"));
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
