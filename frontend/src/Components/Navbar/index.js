@@ -2,6 +2,7 @@ import React from "react";
 import { Bars, Nav, NavLink, NavMenu } from "./NavbarElements";
 
 const Navbar = () => {
+  const isLoggedIn = localStorage.getItem("isLogged");
   return (
     <>
       <Nav>
@@ -28,9 +29,11 @@ const Navbar = () => {
           <NavLink to="/thingsToDo" activeStyle>
             <span className="thingsToDoNavTxt">Things-To-Do</span>
           </NavLink>
-          <NavLink to="/register" activeStyle>
-            <span className="registerNavTxt">Register/Login</span>
-          </NavLink>
+          {isLoggedIn ? null : (
+            <NavLink to="/register" activeStyle>
+              <span className="registerNavTxt">Register/Login</span>
+            </NavLink>
+          )}
         </NavMenu>
       </Nav>
     </>
