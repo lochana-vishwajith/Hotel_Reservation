@@ -1,12 +1,40 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import { Bars, Nav, NavLink, NavMenu } from "./NavbarElements";
 
 const Navbar = () => {
   const isLoggedIn = localStorage.getItem("isLogged");
   const userType = localStorage.getItem("usertype");
+  const navigate = useNavigate();
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <>
-      {userType === "customer" ? (
+      {userType === "admin" ? (
+        <Nav>
+          <NavLink to="/">
+            <img
+              src="https://www.designhill.com/tools/logo-maker"
+              className="logoNavBar"
+            />
+          </NavLink>
+          <Bars />
+          <NavMenu>
+            <NavLink to="/adminDash" activeStyle>
+              <span className="homeNavTxt">Dashboard</span>
+            </NavLink>
+            <NavLink to="/adminRoom" activeStyle>
+              <span className="accommadationNavTxt">Room Details</span>
+            </NavLink>
+
+            <NavLink onClick={() => logOut()} to="/register" activeStyle>
+              <span className="accommadationNavTxt">LogOut</span>
+            </NavLink>
+          </NavMenu>
+        </Nav>
+      ) : (
         <Nav>
           <NavLink to="/">
             <img
@@ -31,33 +59,15 @@ const Navbar = () => {
             <NavLink to="/thingsToDo" activeStyle>
               <span className="thingsToDoNavTxt">Things-To-Do</span>
             </NavLink>
-            {isLoggedIn ? null : (
+            {isLoggedIn ? (
+              <NavLink onClick={() => logOut()} to="/register" activeStyle>
+                <span className="accommadationNavTxt">LogOut</span>
+              </NavLink>
+            ) : (
               <NavLink to="/register" activeStyle>
                 <span className="registerNavTxt">Register/Login</span>
               </NavLink>
             )}
-          </NavMenu>
-        </Nav>
-      ) : (
-        <Nav>
-          <NavLink to="/">
-            <img
-              src="https://www.designhill.com/tools/logo-maker"
-              className="logoNavBar"
-            />
-          </NavLink>
-          <Bars />
-          <NavMenu>
-            <NavLink to="/adminDash" activeStyle>
-              <span className="homeNavTxt">Dashboard</span>
-            </NavLink>
-            <NavLink to="/accommadation" activeStyle>
-              <span className="accommadationNavTxt">Room Details</span>
-            </NavLink>
-
-            <NavLink to="/accommadation" activeStyle>
-              <span className="accommadationNavTxt">LogOut</span>
-            </NavLink>
           </NavMenu>
         </Nav>
       )}

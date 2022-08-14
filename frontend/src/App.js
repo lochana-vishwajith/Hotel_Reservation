@@ -15,6 +15,7 @@ import Footer from "./Components/Footer/Footer";
 import RoomDetails from "./Screens/RoomDetailsComponent/RoomDetails";
 import PayementGateway from "./Screens/PaymentGatewayScreen/PayementGateway";
 import AdminDash from "./Screens/AdminDashboardComponent/AdminDash";
+import AdminRoomDetails from "./Screens/RoomdetailsScreen/AdminRoomDetails";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/roomDetails" element={<RoomDetails />} />
         <Route path="/payment" element={<PayementGateway />} />
         <Route path="/adminDash" element={<AdminDash />} />
+        <Route path="/adminRoom" element={<AdminRoomDetails />} />
       </Routes>
       <Footer />
     </Router>

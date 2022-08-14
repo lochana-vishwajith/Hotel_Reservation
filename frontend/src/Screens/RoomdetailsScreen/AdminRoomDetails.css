@@ -1,0 +1,36 @@
+.adminRoomConainer {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.addTypeTxt {
+    float: right;
+    cursor: pointer;
+}
+.roomTypesContainer{
+    margin-top: 2.5%;
+}
+.roomTypedisplyCon {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    box-sizing: border-box;
+    margin-bottom: 3%;
+}
+.deleteTxt {
+    float: right;
+    padding: 2%;
+    cursor: pointer;
+}
+#typeCard {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 2%;
+}
+#cancelBtn {
+    margin-left: 3%;
+}
+#typeCardAdd {
+    border-color: green;
+    border-width: 3;
+    padding-left: 4%;
+    padding-right: 4%;
+}
