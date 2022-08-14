@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const ReservationSchema = Schema({
   customerId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: "UserDetails",
   },
   checkInDate: {
     type: Date,
@@ -20,6 +21,10 @@ const ReservationSchema = Schema({
   },
   confirmed: {
     type: Boolean,
+    required: true,
+  },
+  reservedDate: {
+    type: Date,
     required: true,
   },
 });
