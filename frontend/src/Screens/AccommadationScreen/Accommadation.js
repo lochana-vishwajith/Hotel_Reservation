@@ -1,41 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Slide } from "react-slideshow-image";
 import "./Accommadation.css";
 import RoomIntro from "../../Assets/Video/final.mp4";
-import RoomOne from "../../Assets/Images/superior-room-header-1-480x231.jpg";
 import { Link } from "react-router-dom";
-
-const RoomTypes = [
-  {
-    type: "GRAND EXECUTIVE SUITE",
-    description:
-      "This elegant and spacious suite comes with a living and outdoor dining area which opens out to a private plunge pool and a wooden deck with outdoor seating and pool beds overlooking the stunning views of the Ella Gap & the small Adam’s peak. The room is equipped with a large ensuite bathroom with shower, provided with hot & cold water.The suite also comes with a kitchenette equipped with cutlery, glassware, crockery and includes a butler service to enhance the holiday experience. Guests have the option of booking this unit as a double suite or can be converted to accommodate maximum of three persons with a single size extra bed in the bedroom",
-    facilities:
-      "Private Plunge Pool,Large Balcony with 2 sunbeds,Outdoor dining area,itchenette,Microwave Oven,Coffee machine,In room Tea/coffee making facility,Cutlery & Crockery,King Size Luxury Bed (7 feet * 7 feet),ooden flooring,Hot and cold water",
-    images: [RoomOne],
-    price: "$150.00",
-  },
-  {
-    type: "Greenland Suite",
-    description:
-      "This elegant and spacious suite comes with a living and outdoor dining area which opens out to a private plunge pool and a wooden deck with outdoor seating and pool beds overlooking the stunning views of the Ella Gap & the small Adam’s peak. The room is equipped with a large ensuite bathroom with shower, provided with hot & cold water.The suite also comes with a kitchenette equipped with cutlery, glassware, crockery and includes a butler service to enhance the holiday experience. Guests have the option of booking this unit as a double suite or can be converted to accommodate maximum of three persons with a single size extra bed in the bedroom",
-    facilities:
-      "Private Plunge Pool,Large Balcony with 2 sunbeds,Outdoor dining area,itchenette,Microwave Oven,Coffee machine,In room Tea/coffee making facility,Cutlery & Crockery,King Size Luxury Bed (7 feet * 7 feet),ooden flooring,Hot and cold water",
-    images: [RoomOne],
-    price: "$100.00",
-  },
-  {
-    type: "Honeymoon Deluxe",
-    description:
-      "This elegant and spacious suite comes with a living and outdoor dining area which opens out to a private plunge pool and a wooden deck with outdoor seating and pool beds overlooking the stunning views of the Ella Gap & the small Adam’s peak. The room is equipped with a large ensuite bathroom with shower, provided with hot & cold water.The suite also comes with a kitchenette equipped with cutlery, glassware, crockery and includes a butler service to enhance the holiday experience. Guests have the option of booking this unit as a double suite or can be converted to accommodate maximum of three persons with a single size extra bed in the bedroom",
-    facilities:
-      "Private Plunge Pool,Large Balcony with 2 sunbeds,Outdoor dining area,itchenette,Microwave Oven,Coffee machine,In room Tea/coffee making facility,Cutlery & Crockery,King Size Luxury Bed (7 feet * 7 feet),ooden flooring,Hot and cold water",
-    images: [RoomOne],
-    price: "$200.00",
-  },
-];
+import axios from "axios";
+import { Toast } from "devextreme-react/toast";
 
 const Accommadation = () => {
+  const [RoomTypes, setRoomTypes] = useState([]);
+  const [toastmessage, settoastmessage] = useState("");
+  const [toastType, settoastType] = useState("");
+  const [toastVisible, setToastVisible] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/roomTypeDetails/roomType`)
+      .then((res) => {
+        console.log(res);
+        setRoomTypes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setToastVisible(true);
+        settoastmessage("Room Type Fetching Failed");
+        settoastType("error");
+      });
+  }, []);
+
   return (
     <div className="accommadation">
       <div className="intoDiv">
@@ -74,8 +65,14 @@ const Accommadation = () => {
                   alt="Card image cap"
                 />
                 <div class="card-body">
-                  <h5 class="card-title">{room.type}</h5>
-                  <Link to="/roomDetails" class="btn btn-outline-success">
+                  <h5 class="card-title">{room.roomType}</h5>
+                  <Link
+                    onClick={() =>
+                      localStorage.setItem("roomDetils", JSON.stringify(room))
+                    }
+                    to="/roomDetails"
+                    class="btn btn-outline-success"
+                  >
                     Find out more
                   </Link>
                 </div>
@@ -84,6 +81,15 @@ const Accommadation = () => {
           ))}
         </div>
       </div>
+      <center>
+        <Toast
+          visible={toastVisible}
+          message={toastmessage}
+          type={toastType}
+          onHiding={() => setToastVisible(false)}
+          displayTime={1500}
+        />
+      </center>
     </div>
   );
 };

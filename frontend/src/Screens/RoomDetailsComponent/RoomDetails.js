@@ -9,31 +9,24 @@ import "react-slideshow-image/dist/styles.css";
 import RoomOne from "../../Assets/Video/room.mp4";
 import { useNavigate } from "react-router";
 
-const RoomDetails = () => {
+const RoomDetails = (props) => {
   const [facilities, setFacilities] = useState([]);
   const [checkInDate, setCheckingDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState();
   const [toastVisible, setToastVisible] = useState(false);
   const [toastmessage, settoastmessage] = useState("");
   const [toastType, settoastType] = useState("");
+  const [roomDetails, setRoomDetils] = useState();
   const navigate = useNavigate();
-
-  let RoomDetails = {
-    type: "GRAND EXECUTIVE SUITE",
-    description:
-      "This elegant and spacious suite comes with a living and outdoor dining area which opens out to a private plunge pool and a wooden deck with outdoor seating and pool beds overlooking the stunning views of the Ella Gap & the small Adam’s peak. The room is equipped with a large ensuite bathroom with shower, provided with hot & cold water.The suite also comes with a kitchenette equipped with cutlery, glassware, crockery and includes a butler service to enhance the holiday experience. Guests have the option of booking this unit as a double suite or can be converted to accommodate maximum of three persons with a single size extra bed in the bedroom",
-    facilities:
-      "Private Plunge Pool,Large Balcony with 2 sunbeds,Outdoor dining area,itchenette,Microwave Oven,Coffee machine,In room Tea/coffee making facility,Cutlery & Crockery,King Size Luxury Bed (7 feet * 7 feet),ooden flooring,Hot and cold water",
-    images: [RoomOne],
-    price: "$150.00",
-  };
 
   useEffect(() => {
     extractFacilities();
   });
 
   const extractFacilities = () => {
-    const extracted = RoomDetails.facilities.split(",");
+    const extracted = JSON.parse(
+      localStorage.getItem("roomDetils")
+    ).facilities.split(",");
     setFacilities(extracted);
   };
 
@@ -55,10 +48,16 @@ const RoomDetails = () => {
       </div>
       <div className="roomDesContainer">
         <div className="container">
-          <h4 className="roomTitle">{RoomDetails.type}</h4>
-          <p className="roomDes">{RoomDetails.description}</p>
+          <h4 className="roomTitle">
+            {JSON.parse(localStorage.getItem("roomDetils")).roomType}
+          </h4>
+          <p className="roomDes">
+            {JSON.parse(localStorage.getItem("roomDetils")).description}
+          </p>
           <br />
-          <h6 className="roomDes">Price : {RoomDetails.price}</h6>
+          <h6 className="roomDes">
+            Price : {JSON.parse(localStorage.getItem("roomDetils")).price}
+          </h6>
         </div>
       </div>
       <div className="facilityContainer">
@@ -72,7 +71,11 @@ const RoomDetails = () => {
               ))}
             </div>
             <div className="col">
-              <h3 className="roomTitle">Make A Revervation</h3>
+              <h3 className="roomTitle">Make A Reservation</h3>
+              <span>
+                Please login to the system before making a reservation.
+              </span>
+              <br />
               <br />
               <span className="regFormTxt">Check-in Date</span>
               <DateBox
