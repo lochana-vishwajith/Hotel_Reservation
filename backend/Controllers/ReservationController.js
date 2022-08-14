@@ -1,4 +1,5 @@
 const Reservation = require("../Models/ReservationModel");
+const moment = require("moment");
 
 const makeReservation = (req, res) => {
   console.log("reservation adding is called");
@@ -11,6 +12,7 @@ const makeReservation = (req, res) => {
     checkOutDate,
     price,
     confirmed,
+    reservedDate: moment(),
   });
 
   ReservationDetails.save()
@@ -22,4 +24,17 @@ const makeReservation = (req, res) => {
     });
 };
 
-module.exports = { makeReservation };
+const getReservationHistory = (req, res) => {
+  console.log("reservation history is fetching");
+
+  Reservation.find()
+    .populate("customerId", "fullName country email nic")
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(400).json("Error: " + error);
+    });
+};
+
+module.exports = { makeReservation, getReservationHistory };
