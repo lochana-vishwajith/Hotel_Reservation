@@ -26,5 +26,6 @@ try {
 
 app.use("/userDetails", require("./Routes/UserRoutes"));
 app.use("/roomTypeDetails", require("./Routes/RoomTypesRoute"));
+app.use("/reservation", require("./Routes/ReservationRoutes"));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
