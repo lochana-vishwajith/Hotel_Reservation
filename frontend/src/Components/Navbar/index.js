@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { Bars, Nav, NavLink, NavMenu } from "./NavbarElements";
+import Logonav from "../../Assets/Images/PngItem_2553023.png";
 
 const Navbar = () => {
   const isLoggedIn = localStorage.getItem("isLogged");
@@ -15,10 +16,7 @@ const Navbar = () => {
       {userType === "admin" ? (
         <Nav>
           <NavLink to="/">
-            <img
-              src="https://www.designhill.com/tools/logo-maker"
-              className="logoNavBar"
-            />
+            <img src={Logonav} className="logoNavBar" width={60} height={50} />
           </NavLink>
           <Bars />
           <NavMenu>
@@ -37,10 +35,7 @@ const Navbar = () => {
       ) : (
         <Nav>
           <NavLink to="/">
-            <img
-              src="https://www.designhill.com/tools/logo-maker"
-              className="logoNavBar"
-            />
+            <img src={Logonav} className="logoNavBar" width={60} height={50} />
           </NavLink>
           <Bars />
           <NavMenu>

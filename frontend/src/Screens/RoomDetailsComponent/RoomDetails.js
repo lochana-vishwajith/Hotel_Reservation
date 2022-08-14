@@ -8,15 +8,15 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import RoomOne from "../../Assets/Video/room.mp4";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
-const RoomDetails = (props) => {
+const RoomDetails = () => {
   const [facilities, setFacilities] = useState([]);
   const [checkInDate, setCheckingDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState();
   const [toastVisible, setToastVisible] = useState(false);
   const [toastmessage, settoastmessage] = useState("");
   const [toastType, settoastType] = useState("");
-  const [roomDetails, setRoomDetils] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,12 +30,20 @@ const RoomDetails = (props) => {
     setFacilities(extracted);
   };
 
-  const makeRevervation = () => {
+  const makeRevervation = async () => {
     if (checkInDate === "" || checkOutDate === "") {
       setToastVisible(true);
       settoastmessage("Please fill all the fields");
       settoastType("error");
     } else {
+      console.log(checkInDate, checkOutDate);
+      const reservation = {
+        customerId: JSON.parse(localStorage.getItem("userDetails"))._id,
+        checkInDate,
+        checkOutDate,
+        price: JSON.parse(localStorage.getItem("roomDetils")).price,
+      };
+      localStorage.setItem("reservation", JSON.stringify(reservation));
       navigate("/payment");
     }
   };
@@ -81,7 +89,7 @@ const RoomDetails = (props) => {
               <DateBox
                 placeholder="checkin date"
                 type="date"
-                onChange={() => setCheckingDate()}
+                onValueChange={(e) => setCheckingDate(e)}
               />
 
               <br />
@@ -89,7 +97,7 @@ const RoomDetails = (props) => {
               <DateBox
                 placeholder="checkout date"
                 type="date"
-                onChange={(val) => setCheckOutDate(val)}
+                onValueChange={(val) => setCheckOutDate(val)}
               />
 
               <br />
