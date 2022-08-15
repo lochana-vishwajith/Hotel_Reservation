@@ -31,20 +31,27 @@ const RoomDetails = () => {
   };
 
   const makeRevervation = async () => {
-    if (checkInDate === "" || checkOutDate === "") {
+    const isLoggedin = localStorage.getItem("isLogged");
+    if (isLoggedin === null) {
       setToastVisible(true);
-      settoastmessage("Please fill all the fields");
+      settoastmessage("Please login before make a request");
       settoastType("error");
     } else {
-      console.log(checkInDate, checkOutDate);
-      const reservation = {
-        customerId: JSON.parse(localStorage.getItem("userDetails"))._id,
-        checkInDate,
-        checkOutDate,
-        price: JSON.parse(localStorage.getItem("roomDetils")).price,
-      };
-      localStorage.setItem("reservation", JSON.stringify(reservation));
-      navigate("/payment");
+      if (checkInDate === "" || checkOutDate === "") {
+        setToastVisible(true);
+        settoastmessage("Please fill all the fields");
+        settoastType("error");
+      } else {
+        console.log(checkInDate, checkOutDate);
+        const reservation = {
+          customerId: JSON.parse(localStorage.getItem("userDetails"))._id,
+          checkInDate,
+          checkOutDate,
+          price: JSON.parse(localStorage.getItem("roomDetils")).price,
+        };
+        localStorage.setItem("reservation", JSON.stringify(reservation));
+        navigate("/payment");
+      }
     }
   };
   return (

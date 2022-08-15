@@ -23,7 +23,7 @@ const AdminDash = () => {
     doc.text(title, 100, 10, null, null, "center");
     doc.setTextColor(0);
     doc.setFontSize(12);
-    doc.text(`Monthly Income : ${monthly}`, 20, 30, null, null);
+    doc.text(`Monthly Income : $${monthly}`, 20, 30, null, null);
     doc.text(
       `Generated Date: ${moment(Date.now()).format("YYYY-MM-DD")}`,
       120,
@@ -103,8 +103,14 @@ const AdminDash = () => {
         console.log("val", val);
         monthly.push(val);
         let price = val.price.split("$");
+        let noOfDays = moment(val.checkOutDate).diff(
+          moment(val.checkInDate),
+          "days"
+        );
         console.log(price[1]);
-        total = Number(total) + Number(price[1]);
+        let roomPrice = Number(price[1]) * Number(noOfDays);
+
+        total = Number(total) + Number(roomPrice);
       }
     });
     console.log(monthly.length);
